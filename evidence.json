@@ -1,0 +1,117 @@
+{
+  "query": "Which commit capped the mcp dependency below 2.0.0, and what exactly changed in pyproject.toml? Also, according to the README, how do I connect to multiple MCP servers at once?",
+  "trace": [
+    {
+      "type": "call",
+      "name": "git_log",
+      "args": {
+        "repo_path": "<GIT_SOURCE_REPO>",
+        "max_count": 20
+      }
+    },
+    {
+      "type": "call",
+      "name": "read_text_file",
+      "args": {
+        "path": "<LAB>/docs/langchain_mcp_adapters_README.md"
+      }
+    },
+    {
+      "type": "output",
+      "name": "git_log",
+      "content": "Commit history (compacted by guardrail: hash | date | author | subject):\n52a4535f3eb4b98f386836e4d9b8c4cadf99afca | 2026-09-10 22:21:45-07:00 | Sydney Runkle | docs: announce MCP migration (#628)\ncc0f2843fd5becf2cdb641c910533c3747c3b1ef | 2026-08-06 02:14:08-04:00 | Mason Daugherty | release: 0.3.2 (#604)\nd4a1caa9fb76f8f5206e274c60abe8bd5a3a2599 | 2026-08-06 13:04:50+08:00 | 石岳峰 | fix(deps): cap mcp below 2.0.0 to prevent import failures (#590)\na060231535a54b20c1f635340b37df9b171edbb5 | 2026-08-05 01:27:20-07:00 | dependabot[bot] | build(deps): bump cryptography from 48.0.1 to 50.0.0 (#599)\nc50072ae3cd9d68547474abf434c7b2d42d25caa | 2026-08-05 01:27:13-07:00 | dependabot[bot] | build(deps): bump cryptography from 48.0.1 to 50.0.0 in /examples/servers/streamable-http-stateless (#600)\ne81a81b8e80d2b4e88f7217cd4a61872466f240c | 2026-07-27 14:35:39-04:00 | Mason Daugherty | release: 0.3.1 (#587)\nd4c6611c0bd24894fb4c488e588c04e482ecdd25 | 2026-07-27 21:22:50+03:00 | Kirill Ustinov | feat: add `get_server_info` to retrieve MCP server metadata (#430)\n9735d27a413db1a3469f9bd2810db45939ce57dd | 2026-07-27 12:51:38-04:00 | dependabot[bot] | build(deps): bump the minor-and-patch group with 3 updates (#585)\n04e27038001a3bd50dcfe99b45ae622ceafd677f | 2026-07-27 12:51:23-04:00 | dependabot[bot] | build(deps): bump pypa/gh-action-pypi-publish from 1.14.0 to 1.14.1 in the minor-and-patch group (#583)\n4f17623ddb9175a546cb6ae1dd4d861cc3b9d885 | 2026-07-27 12:51:07-04:00 | dependabot[bot] | build(deps): bump the minor-and-patch group in /examples/servers/streamable-http-stateless with 3 updates (#584)\ne5c7e5f23093c738c57be30258f600c446edfcb6 | 2026-07-27 12:50:58-04:00 | dependabot[bot] | build(deps-dev): bump types-setuptools from 82.0.0.20260518 to 83.0.0.20260724 in the major group (#586)\n105d8d207c27dae867cc50ab218fe680d5b60ecb | 2026-07-25 01:49:12-07:00 | John Kennedy | Add Dependabot coverage for example server (#582)\n710271f1b267dc8d99937cce8d38d4c4f6fb159d | 2026-07-16 21:13:55-07:00 | dependabot[bot] | build(deps): bump mcp from 1.27.2 to 1.28.1 in /examples/servers/streamable-http-stateless in the uv group across 1 directory (#574)\nb42cb1f46d79ca755b362127a9f82db9aa2e4df8 | 2026-07-16 17:20:23-07:00 | dependabot[bot] | build(deps): bump mcp from 1.23.0 to 1.27.2 in /examples/servers/streamable-http-stateless in the uv group across 1 directory (#573)\na57646e02a2a46a1fe3db64d10400de70ba03f23 | 2026-07-16 10:48:41-07:00 | John Kennedy | Pin setup-uv GitHub Action (#572)\na61043113d0a3abe1d83c69180bf20406531e695 | 2026-07-15 16:42:31-07:00 | langsmith-fleet[bot] | Patch LangChain Dependabot alerts (#570)\n1c4448dbe52fba24e8ec27f97f8a4a3df8d3ba71 | 2026-07-13 23:35:30-07:00 | dependabot[bot] | build(deps): bump the minor-and-patch group with 3 updates (#563)\nff08aac2425298937e8814211fa75fc6d647ea50 | 2026-07-13 23:35:22-07:00 | dependabot[bot] | build(deps): bump actions/checkout from 6 to 7 in the major group (#562)\n2974ea1cea635960b0f70687c0445c2908fca9d4 | 2026-07-13 23:35:13-07:00 | dependabot[bot] | build(deps): bump langgraph-checkpoint from 4.0.0 to 4.1.1 (#558)\n78a9369f09459d2c840632f0195b9e19626f784c | 2026-07-13 23:34:49-07:00 | dependabot[bot] | build(deps): bump langgraph-sdk from 0.3.9 to 0.3.15 (#559)"
+    },
+    {
+      "type": "output",
+      "name": "read_text_file",
+      "content": "# LangChain MCP Adapters\n\n> [!IMPORTANT]\n> ## This repository is no longer actively maintained\n>\n> MCP support has moved into LangChain under the [`langchain.mcp`](https://github.com/langchain-ai/langchain/tree/master/libs/langchain_v1/langchain/mcp) namespace. Please migrate to `langchain[mcp]` for ongoing development, fixes, and support.\n>\n> - [Read the announcement](https://www.langchain.com/blog/mcp-in-langchain-stateless-protocol-elicitation-and-more)\n> - [Follow the migration guide](https://docs.langchain.com/oss/python/migrate/langchain-mcp-adapters)\n> - [View the new source code](https://github.com/langchain-ai/langchain/tree/master/libs/langchain_v1/langchain/mcp)\n\nThis library provides a lightweight wrapper that makes [Anthropic Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) tools compatible with [LangChain](https://github.com/langchain-ai/langchain) and [LangGraph](https://github.com/langchain-ai/langgraph).\n\n![MCP](static/img/mcp.png)\n\n> [!note]\n> A JavaScript/TypeScript version of this library is also available at [langchainjs](https://github.com/langchain-ai/langchainjs/tree/main/libs/langchain-mcp-adapters/).\n\n## Features\n\n- 🛠️ Convert MCP tools into [LangChain tools](https://python.langchain.com/docs/concepts/tools/) that can be used with [LangGraph](https://github.com/langchain-ai/langgraph) agents\n- 📦 A client implementation that allows you to connect to multiple MCP servers and load tools from them\n\n## Installation\n\n```bash\npip install langchain-mcp-adapters\n```\n\n## Quickstart\n\nHere is a simple example of using the MCP tools with a LangGraph agent.\n\n```bash\npip install langchain-mcp-adapters langgraph \"langchain[openai]\"\n\nexport OPENAI_API_KEY=<your_api_key>\n```\n\n### Server\n\nFirst, let's create an MCP server that can add and multiply numbers.\n\n```python\n# math_server.py\nfrom mcp.server.fastmcp import FastMCP\n\nmcp = FastMCP(\"Math\")\n\n@mcp.tool()\ndef add(a: int, b: int) -> int:\n    \"\"\"Add two numbers\"\"\"\n    return a + b\n\n@mcp.tool()\ndef multiply(a: int, b: int) -> int:\n    \"\"\"Multiply two numbers\"\"\"\n    return a * b\n\nif __name__ == \"__main__\":\n    mcp.run(transport=\"stdio\")\n```\n\n### Client\n\n```python\n# Create server parameters for stdio connection\nfrom mcp import ClientSession, StdioServerParameters\nfrom mcp.client.stdio import stdio_client\n\nfrom langchain_mcp_adapters.tools import load_mcp_tools\nfrom langchain.agents import create_agent\n\nserver_params = StdioServerParameters(\n    command=\"python\",\n    # Make sure to update to the full absolute path to your math_server.py file\n    args=[\"/path/to/math_server.py\"],\n)\n\nasync with stdio_client(server_params) as (read, write):\n    async with ClientSession(read, write) as session:\n        # Initialize the connection\n        await session.initialize()\n\n        # Get tools\n        tools = await load_mcp_tools(session)\n\n        # Create and run the agent\n        agent = create_agent(\"openai:gpt-4.1\", tools)\n        agent_response = await agent.ainvoke({\"messages\": \"what's (3 + 5) x 12?\"})\n```\n\n## Multiple MCP Servers\n\nThe library also allows you to connect to multiple MCP servers and load tools from them:\n\n### Server\n\n```python\n# math_server.py\n...\n\n# weather_server.py\nfrom typing import List\nfrom mcp.server.fastmcp import FastMCP\n\nmcp = FastMCP(\"Weather\")\n\n@mcp.tool()\nasync def get_weather(location: str) -> str:\n    \"\"\"Get weather for location.\"\"\"\n    return \"It's always sunny in New York\"\n\nif __name__ == \"__main__\":\n    mcp.run(transport=\"http\")\n```\n\n```bash\npython weather_server.py\n```\n\n### Client\n\n```python\nfrom langchain_mcp_adapters.client import MultiServerMCPClient\nfrom langchain.agents import create_agent\n\nclient = MultiServerMCPClient(\n    {\n        \"math\": {\n            \"command\": \"python\",\n            # Make sure to update to the full absolute path to your math_server.py file\n            \"args\": [\"/path/to/math_server.py\"],\n            \"transport\": \"stdio\",\n        },\n        \"weather\": {\n            # Make sure you start your weather server on port 8000\n            \"url\": \"http://localhost:8000/mcp\",\n            \"transport\": \"http\",\n        }\n    }\n)\ntools = await client.get_tools()\nagent = create_agent(\"openai:gpt-4.1\", tools)\nmath_response = await agent.ainvoke({\"messages\": \"what's (3 + 5) x 12?\"})\nweather_response = await agent.ainvoke({\"messages\": \"what is the weather in nyc?\"})\n```\n\n> [!note]\n> Example above will start a new MCP `ClientSession` for each tool invocation. If you would like to explicitly start a session for a given server, you can do:\n>\n> ```python\n> from langchain_mcp_adapters.tools import load_mcp_tools\n>\n> client = MultiServerMCPClient({...})\n> async with client.session(\"math\") as session:\n>     tools = await load_mcp_tools(session)\n> ```\n\n## Streamable HTTP\n\nMCP now supports [streamable HTTP](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports#streamable-http) transport.\n\nTo start an [example](examples/servers/streamable-http-stateless/) streamable HTTP server, run the following:\n\n```bash\ncd examples/servers/streamable-http-stateless/\nuv run mcp-simple-streamablehttp-stateless --port 3000\n```\n\nAlternatively, you can use FastMCP directly (as in the examples above).\n\nTo use it with Python MCP SDK `streamablehttp_client`:\n\n```python\n# Use server from examples/servers/streamable-http-stateless/\n\nfrom mcp import ClientSession\nfrom mcp.client.streamable_http import streamablehttp_client\n\nfrom langchain.agents import create_agent\nfrom langchain_mcp_adapters.tools import load_mcp_tools\n\nasync with streamablehttp_client(\"http://localhost:3000/mcp\") as (read, write, _):\n    async with ClientSession(read, write) as session:\n        # Initialize the connection\n        await session.initialize()\n\n        # Get tools\n        tools = await load_mcp_tools(session)\n        agent = create_agent(\"openai:gpt-4.1\", tools)\n        math_response = await agent.ainvoke({\"messages\": \"what's (3 + 5) x 12?\"})\n```\n\nUse it with `MultiServerMCPClient`:\n\n```python\n# Use server from examples/servers/streamable-http-stateless/\nfrom langchain_mcp_adapters.client import MultiServerMCPClient\nfrom langchain.agents import create_agent\n\nclient = MultiServerMCPClient(\n    {\n        \"math\": {\n            \"transport\": \"http\",\n            \"url\": \"http://localhost:3000/mcp\"\n        },\n    }\n)\ntools = await client.get_tools()\nagent = create_agent(\"openai:gpt-4.1\", tools)\nmath_response = await agent.ainvoke({\"messages\": \"what's (3 + 5) x 12?\"})\n```\n\n## Passing runtime headers\n\nWhen connecting to MCP servers, you can include custom headers (e.g., for authentication or tracing) using the `headers` field in the connection configuration. This is supported for the following transports:\n\n- `sse`\n- `http` (or `streamable_http`)\n\n### Example: passing headers with `MultiServerMCPClient`\n\n```python\nfrom langchain_mcp_adapters.client import MultiServerMCPClient\nfrom langchain.agents import create_agent\n\nclient = MultiServerMCPClient(\n    {\n        \"weather\": {\n            \"transport\": \"http\",\n            \"url\": \"http://localhost:8000/mcp\",\n            \"headers\": {\n                \"Authorization\": \"Bearer YOUR_TOKEN\",\n                \"X-Custom-Header\": \"custom-value\"\n            },\n        }\n    }\n)\ntools = await client.get_tools()\nagent = create_agent(\"openai:gpt-4.1\", tools)\nresponse = await agent.ainvoke({\"messages\": \"what is the weather in nyc?\"})\n```\n\n> Only `sse` and `http` transports support runtime headers. These headers are passed with every HTTP request to the MCP server.\n\n## Tool error handling\n\nMCP distinguishes a tool *execution* error (`CallToolResult(isError=True)`, e.g. \"project not found\") from a protocol/transport failure. By default, an execution error is returned to the model as a `ToolMessage` with `status=\"error\"`, so the agent can see what went wrong and self-correct instead of the run crashing:\n\n```python\nclient = MultiServerMCPClient({...})\ntools = await client.get_tools()  # handle_tool_errors=True by default\n```\n\nTo restore the legacy b\n[TRUNCATED by guardrail: 3,924 chars omitted]"
+    },
+    {
+      "type": "call",
+      "name": "git_show",
+      "args": {
+        "repo_path": "<GIT_SOURCE_REPO>",
+        "revision": "d4a1caa9fb76f8f5206e274c60abe8bd5a3a2599"
+      }
+    },
+    {
+      "type": "output",
+      "name": "git_show",
+      "content": "commit d4a1caa9fb76f8f5206e274c60abe8bd5a3a2599\nAuthor: 石岳峰 <132282304+syf2211@users.noreply.github.com>\nDate:   2026-08-06 13:04:50 +0800\n\n    fix(deps): cap mcp below 2.0.0 to prevent import failures (#590)\n    \n    ## Summary\n    \n    Cap the `mcp` dependency at `<2.0.0` so fresh installs no longer resolve\n    MCP SDK 2.x, which breaks `langchain-mcp-adapters` at import time.\n    \n    ## Motivation\n    \n    `mcp` 2.0.0 removed `RequestContext` from `mcp.shared.context`, but this\n    package still imports it in `callbacks.py`. Because the published\n    constraint was only `mcp>=1.24.0`, new environments resolve `mcp` 2.x\n    and fail immediately on:\n    \n    ```text\n    ImportError: cannot import name 'RequestContext' from 'mcp.shared.context'\n    ```\n    \n    This is an import-time failure, so it takes down any service depending\n    on the package (reported in production LangGraph deployments).\n    \n    ## Changes\n    \n    - Update `pyproject.toml`: `mcp>=1.24.0,<2.0.0`\n    - Regenerate `uv.lock` (resolves to `mcp==1.28.1`)\n    \n    Full MCP SDK v2 support is tracked separately in #578.\n    \n    ## Tests\n    \n    - `make test` — 96 passed, 2 skipped\n    \n    ## Notes\n    \n    This follows the MCP Python SDK team's recommendation to add a `<2`\n    upper bound until consumers migrate. No runtime code changes;\n    dependency-only hotfix.\n    \n    Fixes #589\n    \n    Co-authored-by: syf2211 <syf2211@users.noreply.github.com>\n    Co-authored-by: Mason Daugherty <mason@langchain.dev>\n\n--- pyproject.toml\n+++ pyproject.toml\n@@ -14,7 +14,7 @@ readme = \"README.md\"\n requires-python = \">=3.10\"\n dependencies = [\n     \"langchain-core>=1.3.3,<2.0.0\",\n-    \"mcp>=1.24.0\",\n+    \"mcp>=1.24.0,<2.0.0\",\n     \"typing-extensions>=4.14.0\",\n ]\n \n\n--- uv.lock\n+++ uv.lock\n@@ -523,7 +523,7 @@ test = [\n [package.metadata]\n requires-dist = [\n     { name = \"langchain-core\", specifier = \">=1.3.3,<2.0.0\" },\n-    { name = \"mcp\", specifier = \">=1.24.0\" },\n+    { name = \"mcp\", specifier = \">=1.24.0,<2.0.0\" },\n     { name = \"typing-extensions\", specifier = \">=4.14.0\" },\n ]\n \n"
+    }
+  ],
+  "final_answer": "The commit that capped the MCP dependency below 2.0.0 is identified by the hash **d4a1caa9fb76f8f5206e274c60abe8bd5a3a2599**. The changes made in the `pyproject.toml` file were as follows:\n\n- The dependency line for `mcp` was changed from:\n  ```plaintext\n  \"mcp>=1.24.0\",\n  ```\n  to:\n  ```plaintext\n  \"mcp>=1.24.0,<2.0.0\",\n  ```\n\nThis change was made to prevent import failures that occurred when new installations resolved to MCP SDK version 2.x, which removed necessary components used by the package (git_show d4a1caa9).\n\n### Connecting to Multiple MCP Servers\nAccording to the README, you can connect to multiple MCP servers using the `MultiServerMCPClient`. Here’s a brief overview of how to do it:\n\n1. **Server Setup**: Define multiple servers in a dictionary format, specifying the command and transport for each server.\n   \n   Example:\n   ```python\n   client = MultiServerMCPClient(\n       {\n           \"math\": {\n               \"command\": \"python\",\n               \"args\": [\"/path/to/math_server.py\"],\n               \"transport\": \"stdio\",\n           },\n           \"weather\": {\n               \"url\": \"http://localhost:8000/mcp\",\n               \"transport\": \"http\",\n           }\n       }\n   )\n   ```\n\n2. **Getting Tools**: You can then retrieve tools from these servers and create an agent to interact with them.\n   \n   Example:\n   ```python\n   tools = await client.get_tools()\n   agent = create_agent(\"openai:gpt-4.1\", tools)\n   ```\n\nThis setup allows you to invoke tools from different MCP servers seamlessly (file: langchain_mcp_adapters_README.md).",
+  "grounding_check": [
+    [
+      "\"args\": [\"/path/to/math_server.py\"],",
+      true
+    ],
+    [
+      "\"command\": \"python\",",
+      true
+    ],
+    [
+      "\"math\": {",
+      true
+    ],
+    [
+      "\"mcp>=1.24.0\",",
+      true
+    ],
+    [
+      "\"mcp>=1.24.0,<2.0.0\",",
+      true
+    ],
+    [
+      "\"transport\": \"http\",",
+      true
+    ],
+    [
+      "\"transport\": \"stdio\",",
+      true
+    ],
+    [
+      "\"url\": \"http://localhost:8000/mcp\",",
+      true
+    ],
+    [
+      "\"weather\": {",
+      true
+    ],
+    [
+      "MultiServerMCPClient",
+      true
+    ],
+    [
+      "agent = create_agent(\"openai:gpt-4.1\", tools)",
+      true
+    ],
+    [
+      "client = MultiServerMCPClient(",
+      true
+    ],
+    [
+      "d4a1caa9",
+      true
+    ],
+    [
+      "d4a1caa9fb76f8f5206e274c60abe8bd5a3a2599",
+      true
+    ],
+    [
+      "mcp",
+      true
+    ],
+    [
+      "pyproject.toml",
+      true
+    ],
+    [
+      "tools = await client.get_tools()",
+      true
+    ]
+  ],
+  "fail_query": "On what date was version 0.4.0 of this library released, and who approved that release?",
+  "fail_trace": [],
+  "fail_answer": "NO ANSWER: GraphRecursionError after 25 steps"
+}
